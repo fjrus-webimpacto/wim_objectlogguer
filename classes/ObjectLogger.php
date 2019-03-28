@@ -3,12 +3,6 @@
  class ObjectLogger extends ObjectModel
   {
 
-    public $id_objectlogguer;
-    public $affected_object;
-    public $ation_type;
-    public $object_type;
-    public $message;
-    public $date_add;
 
     public static $definition = array(
         'table' => 'objectlogguer',

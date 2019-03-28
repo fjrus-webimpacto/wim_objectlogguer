@@ -1,6 +1,6 @@
 <?php
 
-  require_once ('ObjectLogger.php');
+  require_once ('classes/ObjectLogger.php');
   if (!defined('_PS_VERSION_'))
     exit;
    
@@ -35,14 +35,10 @@
     public function install()
     {    
        include(dirname(__FILE__).'\sql\install.php');
-       // return parent::install();
 
        return parent::install() &&
-       $this->registerHook('actionObjectAddBefore') &&
-       $this->registerHook('actionObjectAddBefore') &&
-       $this->registerHook('actionObjectDeleteBefore') &&
+       $this->registerHook('actionObjectAddAfter') &&
        $this->registerHook('actionObjectDeleteAfter') &&
-       $this->registerHook('actionObjectUpdateBefore') &&
        $this->registerHook('actionObjectUpdateAfter');
     }
 
@@ -50,30 +46,33 @@
      public function hookActionObjectUpdateAfter($params)
     {
 
-      $anadir = new ObjectLogger();
-      $anadir->affected_object = $params['object']->id;
-      $anadir->action_type = 'Update';
-      $anadir->object_type = get_class($params['object']);
-      $anadir->message = "Object ". get_class($params['object']) . " with id " . $params['object']->id;
-      $anadir->date_add = date("Y-m-d H:i:s");
+      $update = new ObjectLogger();
+      $update->affected_object = $params['object']->id;
+      $update->action_type = 'Update';
+      $update->object_type = get_class($params['object']);
+      $update->message = "Object ". get_class($params['object']) . " with id " . $params['object']->id;
+      $update->date_add = date("Y-m-d H:i:s");
 
-      $anadir->add();
-
+      if(get_class($params['object']) != 'ObjectLogger') {
+      $update->add();
+    }
     }
 
 
     public function hookActionObjectAddAfter($params)
     {
 
-      $after = new ObjectLogger();
-      $after->affected_object = $params['object']->id;
-      $after->action_type = 'Add';
-      $after->object_type = get_class($params['object']);
-      $after->message = "Object ". get_class($params['object']) . " with id " . $params['object']->id;
-      $after->date_add = date("Y-m-d H:i:s");
+      $anadir = new ObjectLogger();
+      $anadirr->affected_object = $params['object']->id;
+      $anadir->action_type = 'Add';
+      $anadir->object_type = get_class($params['object']);
+      $anadir->message = "Object ". get_class($params['object']) . " with id " . $params['object']->id;
+      $anadir->date_add = date("Y-m-d H:i:s");
+      
+      if(get_class($params['object']) != 'ObjectLogger') {
+      $anadir->add();
 
-      $after->add();
-
+    }
     }
 
 
@@ -86,9 +85,9 @@
       $del->object_type = get_class($params['object']);
       $del->message = "Object ". get_class($params['object']) . " with id " . $params['object']->id;
       $del->date_add = date("Y-m-d H:i:s");
-
+      if(get_class($params['object']) != 'ObjectLogger') {
       $del->add();
-
+    }
     }
 
   }
