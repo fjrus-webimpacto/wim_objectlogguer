@@ -1,5 +1,4 @@
 <?php
-
 /*
 * 2007-2016 fjrus
 *
@@ -27,7 +26,7 @@
 
   require_once ('classes/ObjectLogger.php');
   if (!defined('_PS_VERSION_'))
-    exit;
+  exit;
    
   class Wim_objectlogguer extends Module 
   {
@@ -40,20 +39,18 @@
     $this->need_instance = 0;
     $this->ps_versions_compliancy = array('min'=> '1.6', 'max'=> _PS_VERSION_); 
     $this->bootstrap = true;
- 
     parent::__construct();
- 
     $this->displayName = $this->l('wim_objectlogguer');
     $this->description = $this->l('Description of my module.');
  
-    $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
+    $this->confirmUninstall=$this->l('Are you sure you want to uninstall?');
  
     if (!Configuration::get('MYMODULE_NAME')) 
     {      
-      $this->warning = $this->l('No name provided');
+      $this->warning=$this->l('No name provided');
     }
   }
-
+  
     public function install()
     {    
        include(dirname(__FILE__).'\sql\install.php');
