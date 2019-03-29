@@ -1,7 +1,7 @@
 <?php
 
 /*
-* 2007-2016 PrestaShop
+* 2007-2016 fjrus
 *
 * NOTICE OF LICENSE
 *
@@ -20,26 +20,17 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author fjrus <fjrus@webimpacto.com>
-*  @copyright  2007-2016 PrestaShop SA
+*  @copyright  2007-2016 fjrus
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-$sql = array();
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
 
-    $sql[] = 'CREATE TABLE IF NOT EXISTS `' ._DB_PREFIX_. 'objectlogguer` (
-        `id_objectlogguer` int(11) NOT NULL AUTO_INCREMENT,
-        `affected_object` int(11) NOT NULL,
-        `action_type` VARCHAR(255) NOT NULL,
-        `object_type` VARCHAR(255) NOT NULL,
-        `message` text NOT NULL,
-        `date_add` datetime NOT NULL,
-        PRIMARY KEY (`id_objectlogguer`)
-      ) ENGINE=' ._MYSQL_ENGINE_. ' DEFAULT CHARSET=utf8;';
-    
-    foreach ($sql as $query) {
-        if (Db::getInstance()->execute($query) == false) {
-            return false;
-        }
-    }
-?>
+header("Cache-Control: no-store, no-cache, must-revalidate");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+header("Location: ../");
+exit;
