@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 * 2007-2016 fjrus
 *
 * NOTICE OF LICENSE
@@ -42,4 +42,5 @@ $sql = array();
             return false;
         }
     }
+    
 ?>

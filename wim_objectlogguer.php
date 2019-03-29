@@ -1,5 +1,5 @@
 <?php
-/*
+/**
 * 2007-2016 fjrus
 *
 * NOTICE OF LICENSE
@@ -50,7 +50,7 @@
       $this->warning=$this->l('No name provided');
     }
   }
-  
+
     public function install()
     {    
        include(dirname(__FILE__).'\sql\install.php');
@@ -63,12 +63,12 @@
 
      public function hookActionObjectUpdateAfter($params)
      {
-      $update = new ObjectLogger();
-      $update->affected_object = $params['object']->id;
-      $update->action_type = 'Update';
-      $update->object_type = get_class($params['object']);
-      $update->message = "Object ". get_class($params['object']) . " with id " . $params['object']->id;
-      $update->date_add = date("Y-m-d H:i:s");
+      $update=new ObjectLogger();
+      $update->affected_objec=$params['object']->id;
+      $update->action_type='Update';
+      $update->object_type=get_class($params['object']);
+      $update->message="Object ". get_class($params['object']) . " with id " . $params['object']->id;
+      $update->date_add=date("Y-m-d H:i:s");
 
       if(get_class($params['object']) != 'ObjectLogger') 
       {
@@ -78,12 +78,12 @@
 
     public function hookActionObjectAddAfter($params)
     {
-      $anadir = new ObjectLogger();
-      $anadir->affected_object = $params['object']->id;
-      $anadir->action_type = 'Add';
-      $anadir->object_type = get_class($params['object']);
-      $anadir->message = "Object ". get_class($params['object']) . " with id " . $params['object']->id;
-      $anadir->date_add = date("Y-m-d H:i:s");
+      $anadir=new ObjectLogger();
+      $anadir->affected_object=$params['object']->id;
+      $anadir->action_type='Add';
+      $anadir->object_type=get_class($params['object']);
+      $anadir->message="Object ". get_class($params['object']) . " with id " . $params['object']->id;
+      $anadir->date_add=date("Y-m-d H:i:s");
       
       if(get_class($params['object']) != 'ObjectLogger') 
       {
@@ -93,12 +93,12 @@
 
     public function hookActionObjectDeleteAfter($params)
     {
-      $del = new ObjectLogger();
-      $del->affected_object = $params['object']->id;
-      $del->action_type = 'Delete';
-      $del->object_type = get_class($params['object']);
-      $del->message = "Object ". get_class($params['object']) . " with id " . $params['object']->id;
-      $del->date_add = date("Y-m-d H:i:s");
+      $del=new ObjectLogger();
+      $del->affected_object=$params['object']->id;
+      $del->action_type='Delete';
+      $del->object_type=get_class($params['object']);
+      $del->message="Object ". get_class($params['object']) . " with id " . $params['object']->id;
+      $del->date_add=date("Y-m-d H:i:s");
       
       if(get_class($params['object']) != 'ObjectLogger') 
       {
