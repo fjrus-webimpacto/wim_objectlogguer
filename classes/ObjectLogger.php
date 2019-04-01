@@ -35,8 +35,7 @@ class ObjectLogger extends ObjectModel
             'action_type'=>array('type'=>self::TYPE_STRING,'validate'=>'isName','size'=>255),
             'object_type'=>array('type'=>self::TYPE_STRING,'validate'=>'isName','size'=>255),
             'message'=>array('type'=>self::TYPE_STRING,'validate'=>'isGenericName'),
-            'date_add'=>array('type'=>self::TYPE_DATE,'validate'=>'isDate','copy_post'=>false), 
+            'date_add'=>array('type'=>self::TYPE_DATE,'validate'=>'isDate','copy_post'=>false),
         ),
     );
 }
-?>

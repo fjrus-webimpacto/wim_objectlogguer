@@ -36,9 +36,8 @@ $sql[] = 'CREATE TABLE IF NOT EXISTS `' ._DB_PREFIX_. 'objectlogguer` (
     PRIMARY KEY (`id_objectlogguer`)
     ) ENGINE=' ._MYSQL_ENGINE_. ' DEFAULT CHARSET=utf8;';
     
-foreach ($sql as $query){
+foreach ($sql as $query) {
     if (Db::getInstance()->execute($query) == false) {
         return false;
     }
 }
-?>
